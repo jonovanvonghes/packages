@@ -1,0 +1,19 @@
+{
+    "name": "jonovanvonghes/packages",
+    "description": "All Jonovan PHP Class",
+    "type": "library",
+    "licence": "MIT",
+    "authors": [
+        {
+            "name": "Jonovan Vonghes",
+            "email": "jonovan.vonghes@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JonovanVonghes\\Packages\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
