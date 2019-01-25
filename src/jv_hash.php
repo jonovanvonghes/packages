@@ -21,7 +21,7 @@ class JvHash{
 		if ($keyHash != FALSE){
 			$this->keyHash = $keyHash;
 		}
-		// test
+
 	}
 
 
