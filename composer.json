@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "JonovanVonghes\\Packages\\": "src/"
+            "JonovanVonghes\\": "src/"
         }
     },
     "minimum-stability": "dev",
