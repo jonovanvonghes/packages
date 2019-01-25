@@ -1,16 +1,16 @@
 <?php 
 
-namespace JonovanVonghes\JvHash;
+namespace JonovanVonghes\Packages;
 
 /**
- * Classe JV_HASH 
+ * Classe JvHash 
  */
 
 
 /**
 * Permet de créer, vérifier des clés hashé
 */
-class JV_HASH{
+class JvHash{
 
 	private $keyHash = "JonovanVonghes";
 	
