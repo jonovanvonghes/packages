@@ -1,6 +1,6 @@
 <?php 
 
-namespace JonovanVonghes\Packages;
+namespace Jonovanvonghes\Packages;
 
 /**
  * Classe JvHash 
