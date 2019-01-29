@@ -3,7 +3,7 @@
 namespace Jonovanvonghes\Packages;
 
 /**
- * Class JvBootstrap2
+ * Class JvBootstrapForm2
  */
 
 /**
@@ -12,7 +12,7 @@ namespace Jonovanvonghes\Packages;
  * @author Jonovan <jonovan.vonghes@ac-polynesie.pf>
  * @version 1.0
  */
-class JvBootstrap2
+class JvBootstrapForm2
 {
     
 	protected $jv_google_recaptcha_key = '';
