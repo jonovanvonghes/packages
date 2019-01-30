@@ -409,7 +409,9 @@ class JvBootstrapForm2
 
 		?>
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name_input ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?></label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 				<?php if ($btn_input) : ?>
 					<div class="input-group">
@@ -462,7 +464,9 @@ class JvBootstrapForm2
 
 		?>
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name_input ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?></label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 				<input name="<?php echo $name_input ?>_datepicker" id="<?php echo $id_input ?>" type="date" class="form-control <?php echo (isset($is_invalid) && $is_invalid ? 'is-invalid' : '') ?> <?php echo $class_input ?>" placeholder="<?php echo $placeholder_input ?>" <?php echo ($disabled ? 'disabled' : ''); ?> <?php echo ($required ? 'required' : ''); ?> <?php foreach ($data_attr as $data_key => $data_value) {
 					echo $data_key.'="'.$data_value.'" ';
@@ -488,7 +492,9 @@ class JvBootstrapForm2
 
 		?>
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name_input_date ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?></label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 				<div class="row">
 					<div class="col-md-7">
@@ -545,7 +551,9 @@ class JvBootstrapForm2
 
 			?>
 			<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 				<label for="<?php echo $name_date ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?></label>
+			<?php endif; ?>
 				<div class="col-sm-<?php echo $col_sm_date ?>">
 					<div class="row">
 						<?php foreach ($type_date as $name_td => $td) : ?>
@@ -584,7 +592,9 @@ class JvBootstrapForm2
 
 		?>
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name_input ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?></label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 
 				<div class="input-group">
@@ -634,8 +644,10 @@ class JvBootstrapForm2
 		?>
 		
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name_radio ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?>
 			</label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 			<?php foreach ($childs as $child) : ?>
 				<?php if (isset($child['group_title']) && !empty($child['group_title'])) : ?><span id="" class="form-radio-group-title"><?php echo $child['group_title'] ?></span><?php endif; ?>
@@ -673,12 +685,14 @@ class JvBootstrapForm2
         ?>
 
         <div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
             <label for="<?php echo $name_checkbox ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?>
 
 	        	<?php if ($all_btn) : ?>
 		        	<span class='float-right'><span class="all-btn" data-for="<?= $name_checkbox ?>" data-type="uncheck"><?= $all_btn_txt ?></span></span>
 		        <?php endif; ?>
             </label>
+			<?php endif; ?>
             <div class="col-sm-<?php echo $col_sm_input ?>">
                 <?php foreach ($childs as $child) : ?>
                     <?php if (!empty($child['group_title'])) : ?><span id="" class="form-checkbox-group-title"><?php echo $child['group_title'] ?></span><?php endif; ?>
@@ -715,12 +729,14 @@ class JvBootstrapForm2
         ?>
 
         <div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
             <label for="<?php echo $name_checkbox ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?>
 
 	        	<?php if ($all_btn) : ?>
 		        	<span class='float-right'><span class="all-btn" data-for="<?= $name_checkbox ?>" data-type="uncheck"><?= $all_btn_txt ?></span></span>
 		        <?php endif; ?>
             </label>
+			<?php endif; ?>
             <div class="col-sm-<?php echo $col_sm_input ?>">
             	<div class="row">
 	                <?php foreach ($childs as $child) : ?>
@@ -765,8 +781,10 @@ class JvBootstrapForm2
 		
 
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name_radio ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?>
 			</label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 			<?php foreach ($childs as $child) : ?>
 				<?php 
@@ -804,8 +822,10 @@ class JvBootstrapForm2
 		?>
 		
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name_select ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?>
 			</label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 				<select name="<?php echo $name_select ?>" id="<?php echo $id_select ?>" class="form-control <?php echo (isset($is_invalid) && $is_invalid ? 'is-invalid' : '') ?> <?php echo $class_select ?>" <?php echo ($multiple ? 'multiple' : ''); ?> <?php echo ($required ? 'required' : ''); ?>>
 				<?php foreach ($childs as $child) : ?>
@@ -943,7 +963,9 @@ class JvBootstrapForm2
 		?>
 		
 		<div class="form-group row <?php echo $class_div_container ?>" id="<?php echo $id_div_container ?>">
+			<?php if ($col_sm_label != 'none') : ?>
 			<label for="<?php echo $name ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?></label>
+			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
 				<input name="<?php echo ( isset( $name ) ? $name : '' ); echo ( isset ( $multiple ) && $multiple ? '[]' : '' ) ?>" id="<?php echo ( isset ($id) ? $id : '' ) ?>" type="file" class="form-control-file <?php echo (isset($is_invalid) && $is_invalid ? 'is-invalid' : '') ?> <?php echo $class ?>" accept=<?php echo ( isset($accept) && !empty( $accept ) ? '"'.$accept.'"' : ''); ?>  <?php echo ( isset ( $disabled ) && $disabled ? 'disabled' : ''); ?> <?php echo ( isset ($required) && $required ? 'required' : ''); ?> <?php foreach ($data_attr as $data_key => $data_value) {
 					echo $data_key.'="'.$data_value.'" ';
