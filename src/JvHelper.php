@@ -1,6 +1,7 @@
 <?php 
 
 namespace Jonovanvonghes\Packages;
+use \PDO;
 
 /**
 * JvHelper CLASS
