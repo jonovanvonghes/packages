@@ -41,6 +41,12 @@ class JvBootstrapForm2
     		'text' => 'text',
     		'icon' => '',
     	),
+    	'append_input' => false,
+    	'append_options' => array(
+    		'position' => 'left',
+    		'text' => 'text',
+    		'icon' => '',
+    	),
     	'help_text' => '',
     	'help_id' => '',
     	'minlength' => '',
@@ -413,7 +419,7 @@ class JvBootstrapForm2
 			<label for="<?php echo $name_input ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?></label>
 			<?php endif; ?>
 			<div class="col-sm-<?php echo $col_sm_input ?>">
-				<?php if ($btn_input) : ?>
+				<?php if ($btn_input || $append_input) : ?>
 					<div class="input-group">
 				<?php endif; ?>
 				<?php if ($btn_input && $btn_options['position'] == 'left') : ?>
@@ -423,6 +429,10 @@ class JvBootstrapForm2
 								<i class="fa <?= $btn_options['icon'] ?>" aria-hidden="true"></i> 
 							<?php endif; ?>
 							<?= $btn_options['text'] ?></button>
+					</div>
+				<?php elseif($append_input && $append_options['position'] == 'left') : ?>
+					<div class="input-group-prepend">
+          				<div class="input-group-text"><?= (isset($append_options['icon']) && !empty($append_options['icon']) ? "<i class='fa " . $append_options['icon'] . " ' aria-hidden='true'></i> " : "") ?> <?= (isset($append_options['text']) ? $append_options['text'] : "") ?></div>
 					</div>
 				<?php endif; ?>
 
@@ -438,8 +448,12 @@ class JvBootstrapForm2
 							<?php endif; ?>
 							<?= $btn_options['text'] ?></button>
 					</div>
+				<?php elseif($append_input && $append_options['position'] == 'right') : ?>
+					<div class="input-group-prepend">
+          				<div class="input-group-text"><?= (isset($append_options['icon']) && !empty($append_options['icon']) ? "<i class='fa " . $append_options['icon'] . " ' aria-hidden='true'></i> " : "") ?> <?= (isset($append_options['text']) ? $append_options['text'] : "") ?></div>
+          			</div>
 				<?php endif; ?>
-				<?php if ($btn_input) : ?>
+				<?php if ($btn_input || $append_input) : ?>
 					</div>
 				<?php endif; ?>
 
