@@ -701,6 +701,25 @@ abstract class JvHelper{
 			return $tmp;
 		}
 
+		/**
+		 * Recherche une clé/valeur pour chaque item
+		 * Si return est spécifié, en retour item[$retrun]
+		 * si $return == FALSE, on retroune l'item complet
+		 * @author 		Jonovan <jonovan.vonghes@ac-polynesie.pf>
+		*/
+		public function _find_only_key_condition($data = array(), $key = false, $value = false, $return = false)
+		{
+			foreach ($data as $item) {
+
+				if (isset($item[$key]) && $item[$key] == $value){
+					if ($return && isset($item[$return]))
+						return $item[$return];
+					return $item;
+				}
+			}
+			return FALSE;
+		}
+
 		public function _is_empty($data = array(), $key = false)
 		{
 			$tmp = array();
@@ -882,10 +901,19 @@ abstract class JvHelper{
 		    return utf8_encode(strftime($format, $date));
 		}
 
-		public function _get_date_simple($date_mysql)
+		public function _get_date_simple($date_mysql, $timeZone = false)
 		{
 
-			return date('d/m/Y', strtotime($date_mysql));
+		    $date = strtotime($date_msql);
+			if ($timeZone){
+
+		        $datetime = new DateTime(date('Y-m-d\TH:i:s.u', $date));
+		        $datetime->setTimeZone(new DateTimeZone($timeZone));
+
+		        $date = strtotime($datetime->format("Y-m-d\TH:i:s.u"));
+			}
+			
+			return date('d/m/Y', $date);
 		}
 
 
