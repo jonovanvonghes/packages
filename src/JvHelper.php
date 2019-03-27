@@ -18,6 +18,14 @@ abstract class JvHelper{
 	protected $db = false;
 	protected $stmt = false;
 
+	/**
+	 * TimeZone
+	*/
+	protected $timezone = false;
+	protected $format_datetime = "%a %e %h %Y à %kh%M";
+	protected $format_date = "%a %e %h %Y";
+	protected $format_date_simple = "d/m/Y";
+
 	protected $all = array();
 
 	/**
@@ -872,7 +880,7 @@ abstract class JvHelper{
 		function _get_datetime_fr($date_msql, $timeZone = false)
 		{
 		    $date = strtotime($date_msql);
-		    $format = htmlentities('%a %e %h %Y à %kh%M', ENT_QUOTES, 'utf-8');
+		    $format = htmlentities($this->format_datetime, ENT_QUOTES, 'utf-8');
 
 		    if ($timeZone) {
 		        $datetime = new DateTime(date('Y-m-d\TH:i:s.u', $date));
@@ -890,7 +898,7 @@ abstract class JvHelper{
 		function _get_date_fr($date_msql, $timeZone = false)
 		{
 		    $date = strtotime($date_msql);
-		    $format = htmlentities('%a %e %h %Y', ENT_QUOTES, 'utf-8');
+		    $format = htmlentities($this->format_date, ENT_QUOTES, 'utf-8');
 
 		    if ($timeZone) {
 		        $datetime = new DateTime(date('Y-m-d\TH:i:s.u', $date));
@@ -903,17 +911,18 @@ abstract class JvHelper{
 
 		public function _get_date_simple($date_mysql, $timeZone = false)
 		{
+		    $date = strtotime($date_mysql);
 
-		    $date = strtotime($date_msql);
 			if ($timeZone){
 
-		        $datetime = new DateTime(date('Y-m-d\TH:i:s.u', $date));
+		        $datetime = new DateTime($date_mysql);
 		        $datetime->setTimeZone(new DateTimeZone($timeZone));
 
 		        $date = strtotime($datetime->format("Y-m-d\TH:i:s.u"));
+
 			}
 			
-			return date('d/m/Y', $date);
+			return date($this->format_date_simple, $date);
 		}
 
 
@@ -1033,17 +1042,5 @@ abstract class JvHelper{
 
 		}
 
-}
-
-/**
-* JvTempHelper
-*/
-class JvTempHelper extends JvHelper
-{
-	
-	function __construct()
-	{
-		parent::__construct();
-	}
 }
 
