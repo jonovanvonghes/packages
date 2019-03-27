@@ -1226,7 +1226,10 @@ class JvBootstrapForm2
 					break;
 			}
 
-			if ( !$part && (isset($arg['first_col_sm']) && isset($arg['second_col_sm']) ) && ($arg['first_col_sm'] + $arg['second_col_sm'] < 12) )
+			if ( !$part 
+				&& (isset($arg['first_col_sm']) && isset($arg['second_col_sm']) ) 
+				&& ( is_numeric($arg['first_col_sm']) && is_numeric($arg['second_col_sm']) && $arg['first_col_sm'] + $arg['second_col_sm'] < 12) 
+			)
 				echo '<div class="clearfix"></div><br>';
 
 			if (isset($arg['br']) && $arg['br'])
