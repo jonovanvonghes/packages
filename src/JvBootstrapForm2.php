@@ -1065,6 +1065,9 @@ class JvBootstrapForm2
 		if (empty($selected) || is_null($selected))
 			return $childs;
 
+		if (!is_array($selected))
+			$selected = array($selected);
+
 		foreach ($childs as $key => $child) {
 			$childs[$key]['selected'] = FALSE;
 			if ( in_array( $child['value'], $selected ) )
@@ -1154,7 +1157,7 @@ class JvBootstrapForm2
 				echo "<div class='col-sm'>";
 			}
 
-			if (isset($arg['first_col_sm']) && $arg['second_col_sm'])
+			if (isset($arg['first_col_sm']) && isset($arg['second_col_sm']))
 				$this->set_col($arg['first_col_sm'], $arg['second_col_sm']);
 
 			switch ($arg['generate_type']) {
