@@ -648,7 +648,7 @@ abstract class JvHelper{
 			return $tmp;
 		}
 
-		public function _relace_key_by($data = array(), $old = false, $new = false)
+		public function _replace_key_by($data = array(), $old = false, $new = false)
 		{
 			if ($old == FALSE)
 				return FALSE;
