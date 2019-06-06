@@ -85,13 +85,20 @@ class JvAllFiles extends JvHelper
 
 		$col_searchbar = $this->col_searchbar;
 
+		$has_avanced_filters = false;
 		$valueNames = array();
 		foreach ($keys as $key) {
 			if (isset($key['listjs_val']) && $key['listjs_val'])
 				$valueNames[] = $key['key'];
+
+			if (isset($key['avanced_filters']) && $key['avanced_filters'])
+				$has_avanced_filters = true;
 		}
 
+
+
 		$id = "all_files_" . uniqid();
+		$this->id = $id;
 
 		?>
 			<div id="<?= $id ?>" class="listjs">
@@ -117,7 +124,7 @@ class JvAllFiles extends JvHelper
 							<?php foreach ($plus as $p) : ?>
 								<?php if (isset($p['type']) && $p['type'] == "btn" ) : ?>
 
-									<button type="button" class="btn <?= $p['class'] ?>" 
+									<button type="button" class="btn btn-sm <?= $p['class'] ?>" 
 										<?php if (isset($p['attributs']) && is_array($p['attributs'])) : ?>
 											<?php foreach ($p['attributs'] as $attr_key => $attr_val) : ?>
 												<?= $attr_key ?>="<?= $attr_val ?>" 
@@ -151,9 +158,24 @@ class JvAllFiles extends JvHelper
 					<?php endif; ?>
 
 				</div>
+				<div class="row">
 
-				<p>Total : <span id="nb_files_<?= $id ?>"></span></p><hr>
-				
+
+					<?php if ($has_avanced_filters) : ?>
+						<!-- Avanced filters -->
+
+						<div class="col-lg-12">
+							<div class="row">
+								<?php $this->generate_avanced_filters($keys); ?>
+							</div>
+						</div>
+						<?php //debug($this->keys);?>
+					<?php endif; ?>
+				</div>
+
+				<br>
+				<p>Total : <span id="nb_files_<?= $id ?>"></span></p>
+				<hr>
 				<!-- TITLE -->
 				<ul id="listjs_title_<?= $id ?>" class="list-unstyled list-head <?= $dnone ?>">
 					<li class="row">
@@ -348,6 +370,112 @@ class JvAllFiles extends JvHelper
 		<?php 
 	}
 
+
+
+	
+	/*------------------------------------ADVANCED FILTERS----------------------------------------*/
+		
+
+
+	protected function generate_avanced_filters($keys = array()){
+
+		?>
+			<!-- <div class="col"></div> -->
+		<?php 
+
+		foreach ($keys as $id => $key) {
+		
+				
+			if (!isset($key['avanced_filters']) || $key['avanced_filters'] == FALSE)
+				continue;
+
+			$key['id'] = "af_advanced_filter_" . uniqid();
+
+			switch ($key['filters_args']['type']) {
+				case 'select':
+					$this->generate_avanced_filters_select($key);
+					break;
+				
+				default:
+					break;
+			}
+
+			$this->keys[$id] = $key;
+		}
+	}
+
+	protected function generate_avanced_filters_select($key = array()){
+		$arg = $key['filters_args'];
+
+		?>
+			<div class="col-lg-<?= $arg['col'] ?>">
+
+				<div class="form-group">
+					<?php if (isset($arg['title'])) : ?>
+
+						<label for=""><?= $arg['title'] ?></label>
+					<?php endif; ?>
+
+					<select id="<?= $key['id'] ?>" class="form-control form-control-sm">
+						<option value="all" selected>Tous</option>
+						<?php foreach ($arg['childs'] as $child) : ?>
+							<option 
+								value="<?= $child['value'] ?>" 
+								<?= (isset($child['default']) && $child['default'] ? 'selected' : '') ?> 
+							>
+
+								<?= $child['text'] ?>
+								
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+		<?php 
+	}
+
+
+	
+	/*------------------------------------SCRIPT----------------------------------------*/
+	
+
+	public function generate_script(){
+
+		$id = $this->id;
+
+		?>
+		<!-- ALL FILES SCRIPT -->
+		<script>
+			
+			<?php foreach ($this->keys as $key) : 
+				
+				if (!isset($key['avanced_filters']) || $key['avanced_filters'] == FALSE )
+					continue;
+
+				$af_key = $key['key'];
+
+			?>
+
+				$('#<?= $key['id'] ?>').change(function() {
+					
+					status = $(this).val();
+					window.all_files.<?= $id ?>.filter(function(item) {
+						if (status == "all" && item.values().<?= $af_key ?>.length){
+							return true;
+						}
+						
+						if (status == item.values().<?= $af_key ?>){
+							return true;
+						}else{
+							return false;
+						}
+					});
+					$("#nb_files_<?= $id ?>").text(window.all_files.<?= $id ?>.matchingItems.length);
+				});
+			<?php endforeach; ?>
+		</script>
+		<?php 
+	}
 
 
 }
