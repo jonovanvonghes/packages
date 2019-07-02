@@ -796,6 +796,35 @@ abstract class JvHelper{
 			return $tmp;
 		}
 
+		/**
+		 * Merge 2 tableaux sans doublon
+		 * @author 		Jonovan <jonovan.vonghes@ac-polynesie.pf>
+		*/
+		public function _merge_by_key_without_double($a = array(), $b = array(), $key = false)
+		{
+			if ($key == FALSE)
+				return $a;
+
+			$tmp_in_array = $this->_only_key($a, $key);
+			if (empty($tmp_in_array)){
+
+				foreach ($b as $tmp_b) {
+					if (isset($tmp_b[$key])){
+						$a[] = $tmp_b;
+					}
+				}
+
+			}else{
+
+				foreach ($b as $tmp_b) {
+					if (isset($tmp_b[$key]) && !in_array($tmp_b[$key], $tmp_in_array)){
+						$a[] = $tmp_b;
+					}
+				}
+			}
+			return $a;
+		}
+
 		public function _implode($data = array(), $separator = ",")
 		{
 			$tmp = array();
