@@ -380,6 +380,7 @@ class JvBootstrapForm2
     	'elem' => 'span',
     	'text' => "",
     	'br' => false,
+    	'doublebr' => false,
     	'hr' => false,
     );
 
@@ -1018,6 +1019,7 @@ class JvBootstrapForm2
 
 		echo "<$elem id='$id' class='$class' $parameters>$text</$elem>";
 		echo ($br ? "<br>" : "");
+		echo ($doublebr ? "<br>" : "");
 		echo ($hr ? "<hr>" : "");
 	}
 

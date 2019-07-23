@@ -866,6 +866,17 @@ abstract class JvHelper{
 			return $data;
 		}
 
+		public function _get_first_key($data = array())
+		{
+			if ($data == FALSE)
+				return FALSE;
+			
+			foreach ($data as $key => $value) {
+				return $key;
+			}
+			return FALSE;
+		}
+
 	/*------------------------------------ERROR----------------------------------------*/
 
 		/**
