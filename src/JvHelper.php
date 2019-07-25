@@ -565,11 +565,11 @@ abstract class JvHelper{
 		*/
 		public function _make_checkbox_default($data = array())
 		{
-			$not_find_first = false;
+			$not_find_first = true;
 			foreach ($data as $key => $value) {
 				if ($not_find_first){
 					$data[ $key ]['checked'] = true;
-					$not_find_first = true;
+					$not_find_first = false;
 				}else{
 					$data[ $key ]['checked'] = false;
 				}
@@ -584,11 +584,11 @@ abstract class JvHelper{
 		*/
 		public function _make_select_default($data = array())
 		{
-			$not_find_first = false;
+			$not_find_first = true;
 			foreach ($data as $key => $value) {
 				if ($not_find_first){
 					$data[ $key ]['selected'] = true;
-					$not_find_first = true;
+					$not_find_first = false;
 				}else{
 					$data[ $key ]['selected'] = false;
 				}
