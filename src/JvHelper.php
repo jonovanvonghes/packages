@@ -558,6 +558,44 @@ abstract class JvHelper{
 
 			return $this->_fill_select($data);
 		}
+		
+		/**
+		 * Attribue la valeur default à true pour le premier élément trouvé
+		 * @author 		Jonovan <jonovan.vonghes@ac-polynesie.pf>
+		*/
+		public function _make_checkbox_default($data = array())
+		{
+			$not_find_first = false;
+			foreach ($data as $key => $value) {
+				if ($not_find_first){
+					$data[ $key ]['checked'] = true;
+					$not_find_first = true;
+				}else{
+					$data[ $key ]['checked'] = false;
+				}
+			}
+
+			return $data;
+		}
+
+		/**
+		 * Attribue la valeur default à true pour le premier élément trouvé
+		 * @author 		Jonovan <jonovan.vonghes@ac-polynesie.pf>
+		*/
+		public function _make_select_default($data = array())
+		{
+			$not_find_first = false;
+			foreach ($data as $key => $value) {
+				if ($not_find_first){
+					$data[ $key ]['selected'] = true;
+					$not_find_first = true;
+				}else{
+					$data[ $key ]['selected'] = false;
+				}
+			}
+
+			return $data;
+		}
 
 
 		
@@ -845,6 +883,29 @@ abstract class JvHelper{
 					$tmp[] = "'" . $d[$key] . "'";
 			}
 			return implode($separator, $tmp);
+		}
+
+		public function _explode_by_key($data = array(), $key = false, $separator = ",")
+		{
+			if ($key == FALSE)
+				return FALSE;
+
+			foreach ($data as $k => $val) {
+				if (isset($val[$key]) && is_string($val[$key]))
+					$data[$k][$key] = explode($separator, $val[$key]);
+			}
+			return $data;
+		}
+
+		public function _add_key_value($data = array(), $new_key = false, $new_val = false)
+		{
+			if ($new_key == FALSE)
+				return FALSE;
+			foreach ($data as $k => $v) {
+				$data[$k][$new_key] = $new_val;
+			}
+
+			return $data;
 		}
 
 		public function _add_prefix($data = array(), $prefix = "_")
