@@ -36,7 +36,7 @@ class JvSession {
 
     public function get_id_session(){
 
-    	return = session_id();
+    	return session_id();
 	}
 
     public function read($id){
