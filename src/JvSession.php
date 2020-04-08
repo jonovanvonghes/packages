@@ -34,6 +34,11 @@ class JvSession {
 		$this->sessionState = self::JVSESSION_STARTED;
     }
 
+    public function get_id_session(){
+
+    	return = session_id();
+	}
+
     public function read($id){
     	if(isset($_SESSION[$id]))
     		return $_SESSION[$id];
