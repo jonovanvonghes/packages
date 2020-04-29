@@ -1031,65 +1031,6 @@ abstract class JvHelper{
 	/*------------------------------------MISC----------------------------------------*/
 	
 
-
-		/**
-		 * Nettoie les nom prénoms 
-		 * $names = array(
-		 *    'nomp' => 'nomp',
-		 *    'nomu' => 'nomu',
-		 *    'prenom' => 'prenom',
-		 * );
-		 * @author         Jonovan <jonovan.vonghes@ac-polynesie.pf>
-		*/
-		function get_all_name($all_names = array()){
-
-		    if (empty($all_names))
-		        return '';
-
-		    $res = "";
-
-		    $has_nomp = false;
-		    if ($all_names['nomp'] && !empty($all_names['nomp'])){
-		        $has_nomp = true;
-		        $tmp_np = array();
-		        foreach (explode(' ', $all_names['nomp']) as $n) {
-		            $tmp_np[] = mb_strtoupper($n);
-		        }
-		        $res .= implode(' ', $tmp_np);
-		    }
-
-		    if ($all_names['nomp'] && !empty($all_names['nomu'])){
-		        
-		        $tmp_nu = array();
-
-		        if ($has_nomp)
-		            $tmp_nu[] = '(';
-
-		        foreach (explode(' ', $all_names['nomu']) as $n) {
-		            $tmp_nu[] = mb_strtoupper($n);
-		        }
-
-		        if ($has_nomp)
-		            $tmp_nu[] = ')';
-
-		        $res .= ' '.implode(' ', $tmp_nu);
-		    }
-
-		    if ($all_names['prenom']){
-
-		        $tmp_p = array();
-		        foreach (explode(' ', $all_names['prenom']) as $n) {
-		            $ucf = mb_strtoupper(substr($n, 0, 1));
-		            $last = mb_strtolower(substr($n, 1));
-		            $tmp_p[] = $ucf . $last;
-		        }
-		        $res .= ' '.implode(' ', $tmp_p);
-		    }
-
-		    return trim($res);
-
-		}
-
 		/**
 		 * Nettoie les nom prénoms 
 		 * $names = array(
@@ -1107,31 +1048,19 @@ abstract class JvHelper{
 
 		    $res = "";
 
-		    $has_nomp = false;
-		    if (isset($all_names['nomp']) && !empty($all_names['nomp'])){
-		        $has_nomp = true;
+		    if (isset($all_names['lastname']) && !empty($all_names['lastname'])){
 		        $tmp_np = array();
-		        foreach (explode(' ', $all_names['nomp']) as $n) {
+		        foreach (explode(' ', $all_names['lastname']) as $n) {
 		            $tmp_np[] = mb_strtoupper($n);
 		        }
 		        $res .= implode(' ', $tmp_np);
 		    }
 
-		    if (!$has_nomp && isset($all_names['nomu']) && !empty($all_names['nomu'])){
-		        
-		        $tmp_nu = array();
 
-		        foreach (explode(' ', $all_names['nomu']) as $n) {
-		            $tmp_nu[] = mb_strtoupper($n);
-		        }
-
-		        $res .= implode(' ', $tmp_nu);
-		    }
-
-		    if (isset($all_names['prenom']) && !empty($all_names['prenom'])){
+		    if (isset($all_names['firstname']) && !empty($all_names['firstname'])){
 
 		        $tmp_p = array();
-		        foreach (explode(' ', $all_names['prenom']) as $n) {
+		        foreach (explode(' ', $all_names['firstname']) as $n) {
 		            $ucf = mb_strtoupper(substr($n, 0, 1));
 		            $last = mb_strtolower(substr($n, 1));
 		            $tmp_p[] = $ucf . $last;

@@ -713,7 +713,7 @@ class JvBootstrapForm2
                     <?php if (!empty($child['group_title'])) : ?><span id="" class="form-checkbox-group-title"><?php echo $child['group_title'] ?></span><?php endif; ?>
                     <div class="checkbox <?php echo (isset($child['disabled']) && $child['disabled'] ? 'disabled' : ''); ?>">
                         <label>
-                            <input type="checkbox" name="<?php echo $name_checkbox ?><?= ($multiple ? '[]' : '') ?>" id="<?php echo (isset($child['id']) ? $child['id'] : '') ?>" value="<?php echo $child['value'] ?>" <?php echo ($child['checked'] ? 'checked' : ''); ?> <?php echo (isset($child['disabled']) && $child['disabled'] ? 'disabled' : ''); ?> <?php echo ($required ? 'required' : ''); ?>
+                            <input type="checkbox" name="<?php echo $name_checkbox ?><?= ($multiple ? '[]' : '') ?>" id="<?php echo (isset($child['id']) ? $child['id'] : '') ?>" value="<?php echo (isset($child['value']) ? $child['value'] : "") ?>" <?php echo (isset($child['checked']) && $child['checked'] ? 'checked' : ''); ?> <?php echo (isset($child['disabled']) && $child['disabled'] ? 'disabled' : ''); ?> <?php echo (isset($required) && $required ? 'required' : ''); ?>
                                 <?php if ( isset( $child['data_attr'] ) ) : foreach ($child['data_attr'] as $data_key => $data_value) {
                                     echo $data_key.'="'.$data_value.'" ';
                                 } endif;?>>
@@ -747,7 +747,7 @@ class JvBootstrapForm2
 			<?php if ($col_sm_label != 'none') : ?>
             <label for="<?php echo $name_checkbox ?>" class="col-sm-<?php echo $col_sm_label ?> control-label <?php echo $class_label ?>"><?php echo $libelle_label ?> <?php echo ($required ? '<span class="form-required"> *</span>' : ''); ?>
 
-	        	<?php if ($all_btn) : ?>
+	        	<?php if (isset($all_btn) && $all_btn) : ?>
 		        	<span class='float-right'><span class="all-btn" data-for="<?= $name_checkbox ?>" data-type="uncheck"><?= $all_btn_txt ?></span></span>
 		        <?php endif; ?>
             </label>
@@ -1496,7 +1496,7 @@ class JvBootstrapForm2
     		$data = $_POST[$name];
     		$default_values = array();
     		foreach ($field['childs'] as $child) {
-    			if ($child['disabled'] == FALSE)
+    			if (isset($child['disabled']) && $child['disabled'] == FALSE)
     				$default_values[] = $child['value'];
     		}
 

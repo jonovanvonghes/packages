@@ -19,12 +19,12 @@ class JvAllFiles extends JvHelper
 	protected $show_searchbar = true;
 	protected $hash = null;
 
-	function __construct($all = false)
+	function __construct($all = false, $hash = "")
 	{
 		if ($all != FALSE && is_array($all))
 			$this->all = $all;
 
-		$this->hash = new JvHash();
+		$this->hash = new JvHash($hash);
 	}
 
 	public function set_all($all = false)
@@ -255,7 +255,7 @@ class JvAllFiles extends JvHelper
 			<span class="d-none <?= $key['key'] ?>"><?= $value ?></span>
 		<?php else : ?>
 			<div class="col<?= (isset($key['col']) ? $key['col'] : "") ?>">
-				<span class="<?= $key['key'] ?> <?= $key['class'] ?>">
+				<span class="<?= $key['key'] ?> <?= (isset($key['class']) ? $key['class'] : '') ?>">
 					<?= (isset($key['html_before']) ? $key['html_before'] : "") ?>
 					<?= (isset($key['prefix']) ? $key['prefix'] : "") ?><?= $value ?><?= (isset($key['suffix']) ? $key['suffix'] : "") ?>
 					<?= (isset($key['html_after']) ? $key['html_after'] : "") ?>
