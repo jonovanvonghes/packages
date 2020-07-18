@@ -1669,7 +1669,7 @@ class JvBootstrapForm3
         $name = "",
         $class = "",
         $libelle = "",
-        $required = false,
+        $required = false
     ){
 
         ?>
