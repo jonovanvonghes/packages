@@ -1040,7 +1040,7 @@ abstract class JvHelper{
 		 * );
 		 * @author         Jonovan <jonovan.vonghes@ac-polynesie.pf>
 		*/
-		function get_simple_name($all_names = array()){
+		function _get_simple_name($all_names = array()){
 
 
 		    if (empty($all_names))

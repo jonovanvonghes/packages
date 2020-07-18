@@ -1072,7 +1072,10 @@ class JvBootstrapForm2
 
 		foreach ($childs as $key => $child) {
 			$childs[$key]['selected'] = FALSE;
-			if ( in_array( $child['value'], $selected ) )
+
+			if (is_string($selected) && $child['value'] == $selected)
+				$childs[$key]['selected'] = TRUE;
+			elseif ( is_array($selected) && in_array( $child['value'], $selected ) )
 				$childs[$key]['selected'] = TRUE;
 		}
 
@@ -1086,7 +1089,9 @@ class JvBootstrapForm2
 		foreach ($childs as $key => $child) {
 			$childs[$key]['checked'] = FALSE;
 
-			if ( in_array( $child['value'], $checked ) ){
+			if (is_string($checked) && $child['value'] == $checked)
+				$childs[$key]['checked'] = TRUE;
+			elseif ( is_array($checked) && in_array( $child['value'], $checked ) ){
 				$childs[$key]['checked'] = TRUE;
 			}
 		}
@@ -1323,7 +1328,7 @@ class JvBootstrapForm2
     		if ( isset($field['data_attr']['maxlength']) && is_numeric($field['data_attr']['maxlength']) && mb_strlen($data, 'utf-8') > $field['data_attr']['maxlength'])
     			$data = substr($data, 0, $field['data_attr']['maxlength']);
 
-    		if (!filter_var($data, FILTER_VALIDATE_EMAIL)){
+    		if (filter_var($data, FILTER_VALIDATE_EMAIL) == FALSE){
 				$args[$key]['value_input'] = $data;
     			$args[$key]['is_invalid'] = true;
     			$args[$key]['help_text'] = "Le format de votre email est invalide.";
@@ -1496,13 +1501,13 @@ class JvBootstrapForm2
     		$data = $_POST[$name];
     		$default_values = array();
     		foreach ($field['childs'] as $child) {
-    			if (isset($child['disabled']) && $child['disabled'] == FALSE)
+    			if (!isset($child['disabled']) || (isset($child['disabled']) && $child['disabled'] == FALSE) )
     				$default_values[] = $child['value'];
     		}
 
     		if ( !in_array($data, $default_values) )
     			return FALSE;
-    		
+
 			$args[$key]['childs'] = $this->set_checked_childs($args[$key]['childs'], array($data));
 			return $data;
 		}
